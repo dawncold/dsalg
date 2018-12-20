@@ -2,7 +2,7 @@
 
 * array *(Not implement)*
 * singly linked list
-* doubly linked list *(Not implement)*
+* doubly linked list
 * circular singly linked list *(Not implement)*
 * circular doubly linked list *(Not implement)*
 * stack *(Not implement)*
