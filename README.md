@@ -14,6 +14,7 @@
 
 ## algorithm
 
+* detect loop on linked list
 * bubble sort *(Not implement)*
 * insert sort *(Not implement)*
 * select sort *(Not implement)*

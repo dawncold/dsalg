@@ -104,12 +104,43 @@ class LinkedList(object):
                 i += 1
                 current = current.next_node
 
+    def get_node(self, inx):
+        if inx < 0:
+            raise ValueError('invalid inx')
+        if inx == 0:
+            return None if not self.head else self.head
+        else:
+            i = 0
+            current = self.head
+            while current is not None:
+                if i == inx:
+                    return current
+                i += 1
+                current = current.next_node
+
     def display(self):
         print('h: {}({}), t:{}({})'.format(self.head.data, hex(id(self.head)), self.tail.data, hex(id(self.tail))))
         current = self.head
         while current is not None:
             print(current.data, hex(id(current)))
             current = current.next_node
+
+    def detect_loop(self):
+        p1 = p2 = self.head
+        while True:
+            p1 = p1.next_node
+            if p1 is None:
+                break
+            p2 = p2.next_node
+            if p2 is None:
+                break
+            else:
+                p2 = p2.next_node
+            print('p1: {}, p2: {}'.format(p1.data, p2.data))
+            if p1.data == p2.data:
+                print('found loop')
+                return
+        print('no loop')
 
 
 class DoublyLinkedList(object):
@@ -217,22 +248,8 @@ class DoublyLinkedList(object):
 
 
 if __name__ == '__main__':
-    L = DoublyLinkedList(1, 2, 3, 4, 5)
-    L.display()
-    print('append 6')
-    L.append(6)
-    L.display()
-    print('delete 3')
-    L.delete(3)
-    L.display()
-    print('delete 4, 5, 6')
-    L.delete(4)
-    L.delete(5)
-    L.delete(6)
-    L.display()
-    print('append 4')
-    L.append(4)
-    L.display()
-    print('insert 3 at 2')
-    L.insert(3, 2)
-    L.display()
+    L = LinkedList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+    L.detect_loop()
+    print('build loop 11->4')
+    L.tail.next_node = L.get_node(3)
+    L.detect_loop()
